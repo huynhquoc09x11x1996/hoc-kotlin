@@ -90,12 +90,12 @@ nhau,thể hiện ở việc khi chúng ta override các phương thức, ví d�
 		+ khi các lớp con extends abstract class có nhiệm vụ hoàn thành các method abstract
 
 -interface : 	
-		+ phương thức trong interface bắt buộc phải public (abstract clas thì có thể protected hoặc public)
 		+interface không phải là 1 class, nó chỉ là 1 mẫu giao diện quy định các phương thức bắt buộc cho 1 class nào đó
 		+interface không định nghĩa thân hàm cho phương thức trong nó,chỉ dừng lại ở việc khai báo ,việc 
 		định nghĩa thân hàm cho các phương thức đó sẽ được thực hiện ở các class con implement nó
 		+các phương thức trong interface mặc định là phương thức abstract mặc dù ghi (public void fuction() tương
 		 tự như là public abstract void function())
+		+ phương thức trong interface bắt buộc phải public (abstract clas thì có thể protected hoặc public)
 		+nếu các lớp implement interface thì bắt buộc phải override lại các phương thức trong interface, ví dụ ta đột ngột
 		 thêm 1 phương thức vào interface thì các lớp implement từ nó
 		sẽ báo lỗi vì phải override phương thức vừa thêm ,để không muốn override phương thức vừa thêm vì không cần 
@@ -126,6 +126,7 @@ nhau,thể hiện ở việc khi chúng ta override các phương thức, ví d�
 -COmperable với Comperator thì tạo 1 class rồi implement 2 thằng nó,,xong rồi override compareTo lai,,,,nếu muốn so sánh tiêu chí Object thì tương tự
 
 -Generic method : Integer arrInt[] = {1,2,3,4};
+
 		  String arrStr[] ={"mot","hai","ba","bon"};
 		  public static <T> void printArray(T[] arr) //generic là chữ T hay chữ M bắt kỳ chữ gì cũng đc ...viết grneric
 		 vầy thì print mảng kiểu gì chả được,,ví dụ 100 kiểu dữ liệu chả lẻ viết 100 hàm print

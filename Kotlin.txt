@@ -40,6 +40,10 @@
 ---------------------remove:mangten.remove(index cần xóa hoặc ghi thẳng giá trị cần xóa)
 ---------------------remove:mangten.removeAt(index cần xóa)
 ---------------------update gia tri:mangten.set(index , valueNew)
+---------------------từ python giống phần mapping object sang các biến: ví dụ 
+-----------------------------------------------------------------val  sv1 : Student("HuynhQuoc",12,"An Giang")
+-----------------------------------------------------------------val (name,age,addr) = sv1
+-----------------------------------------------------------------mapping với for: for((key,value) in class)
 
 
 ----function(Hàm):
@@ -67,3 +71,23 @@
 -------imageView cũng gọi id trực tiếp và gọi hàm y chang java
 -------ListView:
 
+----Intent trong kotlin:val intetn : Intent= Intent(this,Main2Activity::class.java)
+
+
+----truyền nhân bá đạo của static bên java:https://viblo.asia/p/singleton-trong-kotlin-63vKjJLMK2R ví dụ bên dưới
+---------class MyClass
+			{ 
+			companion object Factory 
+				{
+					val info = "This is factory"    
+					fun getMoreInfo():String { return "This is factory fun" }
+				} 
+			}
+			MyClass.info             // This is factory
+			MyClass.getMoreInfo() 
+
+			
+			
+----abstract class kotlin : abstract class Human {abstract fun think()}  ...........class Doctor:Human{override fun think(){"doctor think"}}....class Alien:Human{override fun think(){"Alien think"}}
+----interface kotlin : interface myInterface{fun a()},interface myInterface2{fun b()} ,,,class C : myInterface,myInterface2
+---------https://duythanhcse.wordpress.com/2017/06/01/bai-26-lap-trinh-huong-doi-tuong-trong-kotlin-phan-5/ tài liệu interface,abstract class trong kotlin

@@ -84,4 +84,4 @@
 		
 		
 		
-	-vòng đời fragment:	
+	GC: là bộ thu gôm gác chạy nền, dọn các đối tượng ko còn được tham chiếu xóa chúng khỏi bộ nhớ heap trong JVM, các không gian trống sẽ được cấp phát cho các object mới
