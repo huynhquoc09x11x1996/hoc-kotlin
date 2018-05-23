@@ -1,0 +1,136 @@
+﻿-overloading method: (nạp chồng)cùng tên method nhưng khác đối 
+		     số (khác kiểu dữ liệu tham số ,khác số lượng tham số) 
+
+-overriding method: (ghi đè)
+	+ phương thức xuất hiện ở lớp cha và xuất hiện ở lớp con
+	+ khi đối tượng lớp con gọi phương thức thì sự lựa chọn và chạy theo phương thức ở lớp con
+	+ nếu lớp con không có phương thức đó thì mới gọi phương thức ở lớp cha
+	+ muốn chống sự ghi đề thì để phương thưc của lớp cha thêm final
+			
+-SO SÁNH OVERLOADING VÀ OVERRIDING
+		0VERLOADING          ||            OVERRIDING
+	+xuất hiện:trong cùng lớp    ||     +xuất hiện ở class cha và class con
+	+tên phương thức:giống nhau  ||     +tên phương thức giống nhau
+	+số lượng tham số và kiểu dữ ||     +số lượng tham số và kiểu dữ
+	liệu tham số:có thể khác nhau||		liệu tham số:giống nhau
+	+đa hình trong quá trình biên||     +đa hình trong quá trình thực thi
+	dịch                         ||
+-constructor: 
+	+contructor sẽ tự động được gọi khi đối tượng được khởi tạo
+	+contructor không có giá trị trả về , có thể có tham số truyền vào hoặc không
+	+contructor phải cùng tên với tên lớp
+	+ contructor có thể bị nạp chồng(overloading)
+	+một class khi chưa có contructor thì compiler của JVM sẽ tạo cho class 1 contructor mặc định
+-Access midifiers:
+	+private: chỉ truy cập được trong class
+	+default:chỉ truy cập được trong cùng package 
+	+protected:chỉ truy cập được trong cùng package và subclass
+	+public:truy cập được bất kì nơi đâu
+-static:
+	+khi property và method có từ khóa static thì truy cập đến property và phương thức này mà không cần tạo thể hiện của đối tượng
+	+các thuộc tính hoặc các phương thức muốn truy cập được trong static method thì phải là static
+	vd static show() là 1 static method ,trong thân hàm của show ta gọi getName() và name thì getname và name phải là static
+
+-tính đóng gói (Encapsulation) trong Java được hiểu là ẩn giấu thuộc tính và phương thức của đối 
+tượng, nó không cho phép truy cập trực tiếp đến dữ liệu mà phải thông qua các phương thức 
+được đối tượng cung cấp để truy cập đến dữ liệu của chính nó
+
+-tính đa hình : tại từng thời điểm đối tượng sẽ có các hình thái khác nhau trong những hoàn cảnh khác 
+nhau,thể hiện ở việc khi chúng ta override các phương thức, ví dụ như Animals ăn,sleep,jump
+
+-tính kế thừa:
+	+class con có thể kế thừa class cha và lấy được thuộc tính và phương thức của lớp cha
+	+vậy làm thế nào để chống kế thừa : chỉ cần thêm final trước lớp cha để biến nó thành hằng
+-tính trừu tượng :trừu tượng hóa thông qua các lớp trừu tượng (Abstract class) và các giao diện (Interface)
+
+-Exception: +các bất thường xảy ra khi chương trình thực thi
+	+ nếu không xử lý tốt sẽ làm cho chương trình  bị dừng đột ngột ,mất dữ liệu ,ảnh hưởng đến các chương trình khác
+	+Các nguyên nhân gây ra Exception như : input không phù hợp ,đọc file khi file ko tồn tại ,tràn bộ nhớ ...etc
+	Cho ví dụ: 
+	Ví dụ 1:	
+	/system.out.print("Nhận thẻ")
+	/system.out.print(5/0)// sẽ không rút thẻ đượ vì bị exception chỗ này
+	/system.out.print("rút thẻ")
+	Ví dụ 2:
+	int arr[]=[1,2,3]
+	/system.out.print("nhận thẻ")
+	/system.out.print(arr[0])
+	/system.out.print(arr[1])
+	/system.out.print(arr[2])
+	/system.out.print(arr[3])//không rút thẻ được vì Exception ngoài index mảng xảy ra
+	/system.out.print("rút thẻ")
+        +Checked exception : không cần quan tâm mấy vì nó là cái mà được IDE nhắc lệnh . 
+		ví dụ Thread.sleep(500) khi được gọi thì IDe nhắc chúng ta surround try catch
+	+runtime exception : là khi build rồi nó hiện ra lỗi đỏ đỏ ở dòng nào thì đó là runtime exception
+
+-1 số exception cơ bản :
+	+ClassNotFoundException : không tìm thấy class
+	+FileNotFoundException: không tìm thấy file
+	+ArrayIndexOutOfBoundsException: vượt quá chỉ mục của mảng
+	+ArithmeticException: lỗi thực thi 1 phép toán
+	+NumberFormatException:Định dạng số không đúng
+	+NoSuchMethodException:sai tên phương thức
+
+-throw: ném lỗi trong thân hàm ví dùj : void func(int a,int b){if(b==0) throw new ArithmeticException (Lỗi chia cho không) }
+
+-throws: ném lỗi của 1 hàm chứ ko phải trong thân hàm:
+	 ví dụ void func() throws Exception : thì khi hàn func gọi chỗ nào thì nó phải surround try catch
+
+-finally :try
+	{
+		5/0
+	}catch nếu catch thì chương trình ko dừng...ok nếu thay catch thành finally thì cho
+	 dù dừng thì nếu đặt code nào vào finally thì code đó vẫn chạy mặc dù đã bị exception trước đó
+	
+
+-Abstract class: là 1 class mô hình ,khung .định nghĩa các trường,các method
+		, abstract method (abstract method chỉ tên hàm ,đối số , không thân hàm)
+		+ không thể tạo thể hiện : HinhHoc abc = new HinhHoc(); //error , muốn tạo thể hiện 
+		chỉ được thông qua con của nó HinhHoc abc = new HinhVuong();
+		+ khi các lớp con extends abstract class có nhiệm vụ hoàn thành các method abstract
+
+-interface : 	
+		+ phương thức trong interface bắt buộc phải public (abstract clas thì có thể protected hoặc public)
+		+interface không phải là 1 class, nó chỉ là 1 mẫu giao diện quy định các phương thức bắt buộc cho 1 class nào đó
+		+interface không định nghĩa thân hàm cho phương thức trong nó,chỉ dừng lại ở việc khai báo ,việc 
+		định nghĩa thân hàm cho các phương thức đó sẽ được thực hiện ở các class con implement nó
+		+các phương thức trong interface mặc định là phương thức abstract mặc dù ghi (public void fuction() tương
+		 tự như là public abstract void function())
+		+nếu các lớp implement interface thì bắt buộc phải override lại các phương thức trong interface, ví dụ ta đột ngột
+		 thêm 1 phương thức vào interface thì các lớp implement từ nó
+		sẽ báo lỗi vì phải override phương thức vừa thêm ,để không muốn override phương thức vừa thêm vì không cần 
+		thiết thì ta thêm từ kháo 'static' vào phương thức đó
+
+-GIỐNG NHAU VÀ KHÁC NHAU INTERFACE VÀ ABSTRACT CLASS:
+	+giống nhau: *đều chứa các abstract method (abstract class có thể chứa method thường ko chỉ toàn là abstract method đâu :D)
+		*đều phải tạo thể hiện thông qua class con của nó AbstractClass ac = new ConAbstractClass(); ;; ; InterfaceObj interf = new ConInterface();
+	+khác nhau :  interface              |          abstract class
+		-không phải là class         |   - là 1 class
+		-class con khi implement     |   - class con khi extends chỉ càn override các phương
+		phải override lại các method |   thức là abstract thôi
+		-class con có thể implement  |   -class con chỉ có thể extend 1 abstract class
+		nhìu interface,1 interface   |   1 abstract class có thể có nhìu con
+		có thể có nhìu con           |
+
+-Inner class : là class nằm trong 1 class và nằm ngoài phương thức
+
+-Xây dựng StoreInterface các phương thức chung mà các Store (MobileStore,FlowerStore, BookStore ) đều có chung hành vi phương thức như add(),delete(),find(int id),...
+	-sau khi xây dựng StoreInterface xong ta tạo các class MobileStore,BookStore và implement và override các phương thức add,delete,,,
+	-qua Main chỉ cần tạo thể Hiện BookStore bs = new BookStore() ,,,,bs.add(),,,,bs.find("java_123")
+
+
+-Collection : giúp lưu trữ và thao tác với các kiểu dữ liệu khác nhau
+	 (bù cho nhược điểm của Array : kích thước cố định,địa chỉ bộ nhớ liền kề nhau và lưu với 1 kiểu dữ liệu) 
+
+
+-COmperable với Comperator thì tạo 1 class rồi implement 2 thằng nó,,xong rồi override compareTo lai,,,,nếu muốn so sánh tiêu chí Object thì tương tự
+
+-Generic method : Integer arrInt[] = {1,2,3,4};
+		  String arrStr[] ={"mot","hai","ba","bon"};
+		  public static <T> void printArray(T[] arr) //generic là chữ T hay chữ M bắt kỳ chữ gì cũng đc ...viết grneric
+		 vầy thì print mảng kiểu gì chả được,,ví dụ 100 kiểu dữ liệu chả lẻ viết 100 hàm print
+			for(T mang : arr) sout(mang)
+-Generic class : public class ABCD <T1,T2>
+			private T1 age;//10 , ten
+			private T2 mssv;
+		ABCD<String,String> a = new ABCD();   a.setAge("ten")

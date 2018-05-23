@@ -1,0 +1,69 @@
+			***KHÔNG CẦN CHẤM PHẨY CUỐI STAMENT***
+1/Khai báo biến và kiểu dữ liệu:double,float,long,int,byte,short
+----var tenbien_var : data_type = gía trị của biến
+----val tenbien_val : data_type = gía trị của biến
+----ví dụ với khai báo Object: var student1 : Student = Student()
+----ví dụ với khai báo Object: var myListName : ArrayList<String> = ArrayList()
+--------var khác val ở chỗ tenbien_var có thể gán giá trị mới, tenbien_val thì không
+		được thay đổi gán giá trị mới(tenbien_val như final hằng số)
+--------data type: Int,String,Double
+
+
+2/Null safety
+----var a :String ="Quoc" . chúng ta không thể gán a=null bởi vì cở chế của kotlin là vậy,nếu bên java thì ok
+---------nếu muốn 1 biến có thể modify gán bằng null thì phải thêm như sau:var a :String? ="Quoc"
+---------nếu muốn 1 biến bắt buộc không được null thì khai báo như sau:var a :String="Quoc"!!
+
+3/Syntax:
+----IF..ELSE: giống java và các ngôn ngữ đã học
+----when với switch là the same: 
+--------cái mạnh mẻ hơn case của switch:
+------------- là 1 case các tháng 1,2,3->"Quí 1"... 4,5,6->"Quí 2"
+------------- 1 case sẽ có thể làm 1 đoạn biểu thức như ví dụ chọn phép chia thì case "/" sẽ check mẫu có phải là 0 hay không
+--------EXAMPLE:https://duythanhcse.wordpress.com/2017/05/26/bai-11-bieu-thuc-when-trong-kotlin/ quan trọng của when và các ví dụ trong link
+----while y chang java và các ngôn ngữ liên quan
+----for:
+--------for(i in 1..10)     	=>1 2 3 4 5 6 7 8 9 10
+--------for(i in 1 until 5) 	=>1 2 3 4
+--------for(i in 5 downTo 1)	=>5 4 3 2 1
+--------for(i in 5 downTo 1)	=>5 4 3 2 1
+--------for(i in 0..10 step 2)	=>0 2 4 6 8 10
+
+----Mảng (Array):
+--------mảng số và các mảng ko phải String : var mangso : IntArray = listArrayOf(1,2,3,4,5)....mangso.get(index)
+--------Mảng String : var mangStr : List<String> = listOf("Quoc","KieuDiem","VanNguyen")....mangStr.get(index)
+--------Cach 3 : var mangten : ArrayList<String> = ArrayList()
+---------------------mangten.add("Quoc")
+---------------------mangten.add("KieuDiem")
+---------------------mangten.add("VanNguyen")
+---------------------size:mangten.size
+---------------------remove:mangten.remove(index cần xóa hoặc ghi thẳng giá trị cần xóa)
+---------------------remove:mangten.removeAt(index cần xóa)
+---------------------update gia tri:mangten.set(index , valueNew)
+
+
+----function(Hàm):
+------void :
+------- fun showName() Log.e(TAG,"Ham showname")
+------- fun showAGE(ageInput : Int) Log.e(TAG," age = "+ ageInput)
+-----return :
+------- fun getName() : String{return name}
+------- fun getAge() : Int{return name}
+
+----Cách cộng chuỗi với biến bằng cách : "abcd"+ bien hoặc "HoTen : $bien" hoặc nếu với Object nào đó thì "HoTen : ${student.ten}"
+
+
+----Class and OOP trong kotlin
+-------access modifier giống java, có getter setter
+-------Contstructor: cứ gõ constructor(),constructor(hoten: String,tuoi:Int){ht=hoten t=tuoi} 
+--------------------cũng có thể ghi ở trên tên class: ví dụ class Student(ht:String ,age :Int){}
+-------data class dùng để lưu thông tin ko làm gì hết ví dụ: data class Student(val hoten:String, val tuoi:Int)
+
+
+
+----thao tác với các view không cần ánh xạ với findviewbyId như java : chỉ cần gọi id của view bên layout và gọi hàm cho nó
+-------TextView có id txtShowName: thì bên file code kotlin gọi txtShowName.setText("abc") luôn khỏi findViewByID
+-------Button id btnClick : thì bên file kotlin chỉ cần gọi btnCLick.setOnclickListener chọn hàm ko phải là anonimous mà chọn là lamda
+-------imageView cũng gọi id trực tiếp và gọi hàm y chang java
+-------ListView:
+

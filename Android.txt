@@ -1,0 +1,87 @@
+	-Service send data to broadcast : http://aboutyusata.blogspot.com/2014/10/android-send-data-service-to-activity.html
+	
+	-Giao tiếp class thường với Activity:
+		+ có 1 Interface ABCD và phương thức interface đó là methodABCD(String ahihi)
+		+trong class thường tạo thể hiện ABCD abcd;
+		+trong class thường tạo phương thức setListener(ABCD a){abcd=a;}
+		+trong class thường gọi trực tiếp abcd.methodABCD("bábdasd")
+		
+		+trong activity: implement
+		+tạo thể hiện class thường trên kia ClassAAA a = new ClassAAA();
+		+ gọi a.setlistener(this)
+		
+		*nôm na như là 2 thằng làm sao chung 1 interface là ok vì dữ liệu đã có trong interface,thằng class tạo thể hiện tức là nó trỏ tới interface đó rồi
+			bây giờ thằng activity cùng implement luôn cái interface đó và setListener(this) thì 2 thằng cùng 1 interface
+		
+	-Giao tiếp fragment đến activity:
+		*cách 1:
+		+tạo interface bên fragment (GiaoTiepFragAct) có phương thức public void changeText(String text)
+		+tạo tên biến interface GiaoTiepFragAct mCallback;
+		+ khi bấm button thì gọi mCallback.changeText("Abcd gì đó")
+		+onAttach của fragment :mCallback=(GiaoTiepFragAct)getActivity(); cái này hiểu nôm na là tạo thể hiện cho interface HinhHoc hh = new HinhVuong()
+		+activity nhận cần phải implement cái interface và override phương thức , rồi trong phương thức thì textview.setText(string trong đối số của hàm overrride)
+		*cách 2:
+		trong OncreateView của fragment ví dụ ta muốn thay đổi textview của activity mà ta đang ở fragment thì ta gọi getActivity() để lấy cái context chưa fragment này ((TextView)getActivity().findviewbyid(R.id).setText("abcd") textview ở activity sẽ thay đổi)
+	-Giao tiếp activity đến fragment:
+		+Trong activity tạo thể hiện của Fragment : 
+			--FragmentA frgA = new FragmentA();
+			--Bundle bd = new Bundle();
+			--bd.putString
+			--bd.putInt
+			--frgA.setArgument(bd)
+		+qua class FragmentA: gọi Bundle bd = getArgument(); , textview bên fragment set cái text mà bundle getString 
+
+	-Tại sao nên dùng interface để pas dữ liệu giữa fragment activity: vì do khi dùng setArgument(Bundle) thì phải càn có FragmentManager và FragmentTransaction mới được
+
+
+	-Activity: Thông thường trong một ứng dụng (Application) sẽ có một hoặc nhiều Activity (1 giao diện có thể tương tác được)
+			-Activity cũ bị che toàn bộ bởi activity mới thì onPause và onStop
+			-che 1 phần thì onPause 
+			-trở lại activity cũ thì onResume đc gọi
+			-lưu sự kiện trong onPause và đọc lại trong onResume
+			-onDestroy dc gọi khi activity bị hủy
+			-onCreate được gọi khi activity được khởi tạo
+
+	1 Service: Giống như một Activity nhưng Service không có giao diện, dùng để thực hiện các tác vụ chạy dưới nền.
+	– Khi Service bị hủy giữa chừng trong trường hợp bộ nhớ thiết bị thấp thì chắc chắn sẽ được khởi chạy lại nếu trong phương thức onStartCommand() trả về một trong 2 giá trị START_STICKY hoặc START_REDELIVER_INTENT.
+	– Service là một thành phần trong Android vì vậy nó sẽ có độ ưu tiên cao hơn khi xem xét tạm dừng để thu hồi bộ nhớ trong trường hợp bộ nhớ thiết bị thấp.
+	– Sử dụng Service khi chạy các tác vụ không mất quá nhiều thời gian.
+	– Đối với các tác vụ chạy mất nhiều thời gian nên sử dụng Thread kèm Service bên trong.
+	– Service có thể gây block Main Thread.
+
+	2. Thread: Là một thành phần trong hệ thống Android, dùng để thực hiện các tác vụ chạy dưới nền.
+	– Khi bị hủy giữa chừng sẽ không được đảm bảo được khởi chạy lại.
+	– Không có độ ưu tiên khi xem xét tạm dừng để thu hồi bộ nhớ.
+	– Không thể cập nhật được UI từ tiến trình nhưng có thể sử dụng Handler để thực hiện.
+	– Không gây block Main Thread.
+	3- giao tiếp thread update giao diện main thread qua Handler class : 
+		-trong thread = new Thread ; trong method run ta tạo 1 Message mes = hanler.obtainMessage,sau khi có mes thì hanler.setMes(mes)
+		, trong main thread tạo 1 Handler = new Handler sau đó anonimous class sẽ tạo ra và có đối số Message message ta lấy message xài :D
+	Broadcast Recieiver là gì?
+	Là một trong 4 component lớn trong Android, với mục đích là lắng nghe các sự kiện, trang thái của hệ thông phát ra thông qua Intent nhờ đó mà các lập trình viên có thể xử lí được các sự kiện hệ thống ở bên trong ứng dụng của mình.
+
+	Broadcast Receiver có thể hoạt động được cả khi ứng dụng bị tắt đi, nghĩa là ở background chính vì vậy nó thường được sử dụng với service
+
+
+
+	Content provider là một thành phần để quản lý truy cập dữ liệu, nó cung cấp các phương thức khác nhau để các ứng dụng có thể truy cập dữ 
+	liệu từ một ứng dụng khác bằng cách sử dụng ContentResolver. Content Provider có thể giúp cho một ứng dụng quản lý quyền truy cập đến dữ 
+	liệu được lưu bởi ứng dụng đó, hoặc các ứng dụng khác, và đó là một cách để ta có thể chia sẻ dữ liệu cho các ứng dụng khác nhau
+		khi tạo contentprovider thì đã tạo định danh uri và ứng dụng khác có thể dựa vào đó mà truy vấn dữ liệu
+		
+	- lưu trữ dữ liệu trong android :share ref , extenal storage, sqlite
+	-manifest:thông tin về ứng dụng,tên gói ,mô tả các thành phần ứng dụng (act,services , broad,content provider),khai báo cấp quyền
+
+
+
+
+	-Webservice_Android : 
+		***Account : trang chủ đăng nhập login bằng mail huynhquoc09x11x1996@gmail.com 
+		*** đăng nhập database là 1 account trong đó  : vào mục quản lý database đăng nhập bằng DB User	và mật khẩu lúc đăng ký database (tuy là localhost cứ yên tâm về localhost đối với trên host đó chứ ko phải localhost là máy cục bộ offline)
+		
+		+ get data về app :1 file php đọc dữ liệu mysql xong rồi echo json_encode($arrSV); ra json để android đọc cái link file php là xong
+		+ từ app insert,update,delete data trên mysql: 
+		
+		
+		
+	-vòng đời fragment:	
