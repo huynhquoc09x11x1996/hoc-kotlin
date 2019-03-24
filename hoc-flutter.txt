@@ -1,0 +1,80 @@
+Note Flutter
+
+StatefullWidget: Class có thuộc tính thay đổi thì giao diện thay đổi.
+State: Là nơ chứa các thuộc tính thay đổi, các thuộc tính thay đổi thì Widget thay đổi giao diện.
+
+==============================ListView========================================
+ListView.build((context, index) {
+	return _buildRows(index)
+})
+
+Widget _buildRows(int item, int index) {
+  final color = index %2==0 ? Colors.red : Colors.blue;
+  return ListTile(
+    title: new Text(
+        item.toString(),
+      style: new TextStyle(color: color),
+    ),
+  );
+}
+
+==============================GridView========================================
+new GridView.extend(
+	children: _buildGridView(99)
+)
+
+List<Widget> _buildGridView(numOfImages){
+	List<Container> containers = new List<Container>.generate(numOfImages,      //generate là hàm có 2 đối số: số lượng phần tử cần tạo, đối số 2 là index từ 0,1,2,3,4,……
+	(index){
+		return new Container(
+			new Image.asset(paths[index], fit: BoxFit.cover). //fit: BoxFit.cover nếu làm gallery cần thuộc tính này để fit mỗi item image
+				)	
+		 }
+	)
+	
+	return containers;
+}
+
+================================TextAlignment======================================
+
+crossAxisAlignment: : CrossAxisAlignment.end       -> (textAlign: end)
+
+
+
+================================Padding======================================
+
+new Container sẽ có thuộc tính padding (hoặc bất kì container nào khác)
+
+new Container(
+	padding: const EdgeInsets.all(15)  => padding 4 gốc với kích cở 15
+)
+
+
+================================Font Text======================================
+new TextStyle(
+	fontWeight: FontWeight.bold
+)
+
+================================Row/ Column======================================
+- Mỗi lần new Row giống oriendtation: Horizontal bên android tương tự new Column là Vertical
+  - Do mỗi lần custiom item của listview sẽ có 1 số view phức tạp nên có thể tách ra và return 1 widget như bên dưới
+-Muốn spacing giữa các row cách đều nhau: có thuộc tính mainAxisAlignment: MainAxisAlignment.spaceEvenly
+  
+Widget textTitle = new Container(
+	child : new Row(
+		mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+		children: <widget>[
+			child: new Column()
+		]	
+	)
+)
+
+
+================================Thông thường======================================
+
+Khởi tạo aray: final/ var arr = [] hoặc _arr =<T>[]
+
+
+
+
+
