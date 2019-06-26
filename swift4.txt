@@ -1,0 +1,337 @@
+Note Swift4
+
+======================= Khai báo =======================
+
+	- let pi = 3.1415 (constanst ko thể thay đổi giá trị) 
+	- print(“ x = \(pi) ”)
+	- var x, y , z : Double
+	- let a : UInt8 = 10
+	- let b :UInt64 = 100
+	- Cast: let c = b + UInt64(a)
+	- typealias HuynhQuoc Double (định nghĩa tên khác cho kiểu dữ liệu)
+	- let (width, height) = (1920, 1080) (định nghĩa tuple như python)
+
+======================= Operator =======================
+	
+	- So sánh tuple : (1, ”cat”) < (3 ,”dog”)
+	- Một ngôi: let isHD = (width, height) < (1920 ,1080) ? “is HD” : “not HD”
+	- let age : Int ? = nil
+		let myAge = age ?? 18 (nếu age là nil thì myAge bằng 18)
+
+	FOR:
+		for index in 1…5{} : 1 2 3 4 5	
+		for index in 1…<5{} : 1 2 3 4
+		for (index, value) in animals.anumerated(){}
+		for index in stride(from: 1, to: 12 , by: 2){}// 1 3 5 7 9 11
+		for index in stride(from: 1, to: 6 , by: 0.5){}// 1 1.5 2 2.5 3 3.5 4 4.5 5 5.5
+
+	WHILE
+		
+		while condition{}
+		repeat{
+		} while condition
+	
+	SWITCH/CASE
+		
+		switch point{
+			case 0 . . <2:{
+				//fallthrough giống continue trong java, không break
+			}
+			case 2 . . <5:{}
+			case 5 . . <10:{}
+			default: {}
+		}
+
+		switch text{
+			case “AAA”, “BBB” ,”CCC”:{}
+			case “EEE”, “FFF” ,”GGG”:{}
+		}
+
+	RANGE:
+		let range = …7
+		range.contains(6): true
+	
+	LIST/ARRAY:
+		let animals = [“cat”, “dog”,  “tiger”, ”pig”]
+		for animal in animals[ start … end ]{}
+		
+		var someDoubles = [Double]()
+		someDoubles.append(1.0)
+		someDoubles.append(12.0)
+		someDoubles.count
+		
+		var tenIntergers = Array(repeating: 5, count : 10) //5 5 5 5 5 5 5 5 5 5
+		var twoIntergers = Array(repeating: 4, count : 2) //4 4
+		print(tenIntegers  + twoIntegers) // 5 5 5 5 5 5 5 5 5 5 4 4
+
+	SET
+		var startWarCharacter: Set<String> = [“A” , ”B” ,”C”]
+		startWarCharacter.count
+		startWarCharacter.isEmpty
+
+	DICTIONARY
+		
+		var users: [String, String] = [“name”: “quoc” , “email”: “quocb14005xx@gmail.com”]
+		users[“email”] //print “quocb14005xx@gmail.com”
+		users[“email”] = “hahaa@gmail.com”
+		 hoặc users[“email”].updateValue(“hahaa@gmail.com”)
+
+		var numbers: [Int ,String] =[10:”ten” , 123: “mot hai ba”]
+		numbers[10] // print “ten”
+
+		users.count
+		let allKeys = [String](users.keys)
+
+		for (key, value) in users{}
+		for key in user.keys{}
+		for value in user.values{}
+
+======================= Function =======================
+	
+	func sum2Numbers(a: Int, b: Int)-> Int{
+   		 return a+b;
+	}
+
+	*** Return TUPLE:
+
+		func sum2NumbersByTuple(a: Int, b: Int)-> (sum: Int, multiply: Int){
+   			 return (a+b,a*b);
+		}
+
+
+	*** Input args như java:
+		
+		func sumMultipleNumbers(numbers: Double...)-> Double{
+    			var total : Double = 0.0
+   			 for number in numbers{
+       				 total+=number
+    			}
+    			return total
+		}
+		print(sumMultipleNumbers(numbers: 1,2,3,4))
+
+	*** Trả về như con trỏ, thay đổi giá trị khi chạy qua hàm:
+		
+		var t = 1111
+		func inoutFunction(input :inout Int){
+    			input=2222
+		}
+		inoutFunction(input: &t)
+		print(t)
+
+======================= Closures =======================
+
+
+*** Closure không cần đối số truyền vào: 
+	let closure1 = { () -> Void in
+    		print("My first closure")
+	}		
+	closure1()
+
+*** Closure cần đối số truyền vào và trả về kết quả:
+
+	let cl2 = { (value: Int) -> Int in
+        		return value * value
+	}
+	let r = cl2(10)
+	print(r)
+
+*** Closure run luôn
+
+	({ (input: String) -> Void in
+    		print("Closure \(input)")
+	})("HAHAHA")
+
+
+
+	var number : (Int, Int) ->(Int) = {
+   		 return $0 + $1
+	}
+	print(number(1,2))
+
+*** Closure Trong function
+	func TestClosure(input: String, myClosure: (String)->Void){
+    		print("Test Closure")
+    		myClosure(input)
+	}
+
+	TestClosure(input: "Huynh Bao Quoc") { (it) in
+    		print("Xin chao \(it)")
+	}
+
+
+======================= Enum =======================
+
+enum Level{
+    case low,medium,high
+}
+var myLevel: Level = .high
+switch myLevel {
+case .high:
+    print("high")
+case .medium:
+    print("medium")
+default:
+    print("no level")
+}
+
+enum AppleDevice{
+    case appleWatch(String,UIColor)
+    case iphone(Float)
+}
+enum Direction: Int{
+    case up = 1
+    case down = 2
+    case right = 3
+    case left = 4
+}
+var myDirection = Direction.left.rawValue
+
+
+
+================================ Class/ Struct =================================
+
+struct Shape{
+    var width = 0.0
+    var height = 0.0
+    init(){} //constructor không đối số
+    init(fromWidth1 w: Double, fromHeight1 h: Double){
+        self.width = w;
+        self.height = h;
+    }
+    /*
+     nếu muốn overloading constructor thì đặt thêm key trước biến
+     fromWidth1 phải khác fromWidth2 vì nó có cùng kiểu dữ liệu Double
+     */
+    init(fromWidth2 w: Double, fromHeight2 h: Double){
+        self.width = w;
+        self.height = h;
+    }
+}
+
+var shape1 = Shape(width: 10.0, height: 20.0)
+var shape2 = Shape(width: 12.0, height: 30.0)
+shape1 = shape2
+/*
+ shape1 và shape2 sẽ không cùng trỏ tới 1 vùng nhớ bởi vì đây là struct
+ cho nên khi ta thử gán shape2.width =999 thì ko thay đổi giá trị của shape1
+ */
+
+class User{
+    var name : String = ""
+    var universityName: String?//có thể nil
+    var shape: Shape = Shape(width: 10.0, height: 10.0)//thuộc tính có thể bao gồm struct và class
+    lazy var getSomething: String = {
+        /*
+         biến này sẽ được cấp phát khi được gọi, chứ ko phải compile
+         class lên là nó khai báo vùng nhớ như biến bình thường
+         */
+        return "HIHI"
+    }()
+    var getName: String{
+        get{
+            return name
+        }
+    }
+    
+    func setName(n: String){
+        self.name = n
+    }
+    static let pi : Float = 3.1415// static variable
+    static func staticFunc(){} // static function
+}
+
+
+
+===================================== Extension ====================================
+extension Double{
+    var meter:Double{
+        return self
+    }
+    
+    var centermeter: Double{
+        return self * 100.0
+    }
+    
+    var decimeter:Double{
+        return self*1000.0
+    }
+    static func staticFuncExtension()->String{
+        return "\(self) HAHA"
+    }
+}
+print(10.0.meter + 5.0.centermeter)
+print(Double.staticFuncExtension())
+
+
+
+// mutating được sử dụng khi làm thay đổi thuộc tính self của bản thân class
+
+mutating func square()->Double{
+	return self*self
+}
+
+
+===================================== Protocol ====================================
+
+protocol DetailUserProtocol{
+    var fullname: String{ get }// bắt buộc phải implement biến fullname và trả về giá trị
+    func showDetail() -> String //bắt buộc phải implement phương thức này
+    init(x: Double) // thằng nào extend DetailUserProtocol phải có constructor
+}
+class User: DetailUserProtocol{
+    var fullname: String = "HAHA"
+    
+    func showDetail() -> String {
+        print("Detail")
+        return "Detail"
+    }
+    
+    required init(x: Double) {//phải có từ khoá required
+        print("constructor \(x)")
+    }
+}
+let user = User(x: 10.0)
+user.showDetail()
+user.fullname
+
+
+===================================== Delegate ====================================
+
+protocol NetworkServiceDelegate {
+    func didCompleteRequest(result: String)
+}
+class NetworkService {
+    var delegate: NetworkServiceDelegate?
+    
+    func fetchDataFromUrl(url: String) {
+        API.request(.GET, url) { result in
+            delegate?.didCompleteRequest(result)
+        }
+    }
+}
+class MyViewController: UIViewController, NetworkServiceDelegate {
+    
+    let networkService = NetworkService()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        networkService.delegate = self
+    }
+    func didCompleteRequest(result: String) {
+        print("I got \(result) from the server!")
+    }
+}
+	
+
+===================================== Generic Type ====================================
+func abc<T>(a : T)
+
+===================================== Access Control ====================================
+
+Public class: Bất kì nơi đâu cũng có thể truy cập
+Internal class: chỉ trong phạm vi module/package, hoặc chỉ trong file class 
+Private : chỉ trong file class 
+
+
+Muốn kế thừa 1 private thì khai báo trước đó là fileprivate nhưng phải cùng trong 1 file
