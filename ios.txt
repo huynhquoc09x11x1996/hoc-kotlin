@@ -1,0 +1,29 @@
+------------------------------Show Alert-----------------------------
+btnClick{
+  let alert: UIAlertController = UIAlertController(title: "Thong bao", message: "Ahihi",prefferedStyle: .alert)
+  let btnOk: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+  alert.addAction(btnOk)
+  
+  //muốn thêm textfield vào thì
+  alert.addTextField(closure) mở closure đặt tên biết closure để chỉnh các thuộc tính cho textFields đó
+  
+  //muốn lấy giá trị của các textField trong alert thì
+  let textFields1Text = alert.textFields[x].text!
+  
+  present(alert,animated: true,completion: nil)
+}
+
+
+
+------------------------------Action Sheet -----------------------------
+  let alert: UIAlertController = UIAlertController(title: "Thong bao", message: "Ahihi",prefferedStyle: .actionSheet)
+  let btnOk: UIAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+  alert.addAction(btnOk)
+  
+  //muốn thêm textfield vào thì
+  alert.addTextField(closure) mở closure đặt tên biết closure để chỉnh các thuộc tính cho textFields đó
+  
+  //muốn lấy giá trị của các textField trong alert thì
+  let textFields1Text = alert.textFields[x].text!
+  
+  present(alert,animated: true,completion: nil)
