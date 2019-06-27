@@ -53,7 +53,8 @@ btnClick{
 @IBAction func onClicked(_ sender: Any) {
         print("activity 1 on clicked")
         let activity2 = storyboard?.instantiateViewController(withIdentifier: "MH2") as! Activity2ViewController
-        present(activity2, animated: true, completion: nil)
+//        present(activity2, animated: true, completion: nil)
+        navigationController?.pushViewController(activity2, animated: true)
     }
  
     
