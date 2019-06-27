@@ -53,8 +53,32 @@ btnClick{
 @IBAction func onClicked(_ sender: Any) {
         print("activity 1 on clicked")
         let activity2 = storyboard?.instantiateViewController(withIdentifier: "MH2") as! Activity2ViewController
-//        present(activity2, animated: true, completion: nil)
+//      present(activity2, animated: true, completion: nil)
         navigationController?.pushViewController(activity2, animated: true)
     }
+    
+ ### Truyền dữ liệu giữa 2 activity giống như bundle intent của Android ###
+  **UserDefualts nó sẽ lưu dữ liệu trên máy lại, nếu ko muốn thì nên dùng biến toàn cục hoặc biến trong class Abcd().bien
+    
+    ##Activity 1
+    let bundle =UserDefaults()
+    bundle.set(txt_nhap.text!, forKey: "Data")
+    
+    ##Activity 2
+    let bundle2 =UserDefaults()
+    let data = bundle2.object(forKey: "Data") as! String
+    
+------------------------------------- Gesture Recognizer --------------------------------------
+Tap: Chạm, lấy điểm mỗi khi chạm.
+Swipe: 
+Pinch: 2 ngón zoom in, zoom out
+Rotate: 
+Pan: vuốt trên màn hình mỗi khi vuốt đâu lấy điểm ngay đó
+EdgePad: vuốt ở các cạnh màn hình có 5 mode : all, right, left, top, bottom.
+LongPress: 
+    
+    
+    
+ 
  
     
