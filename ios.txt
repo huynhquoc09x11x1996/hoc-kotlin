@@ -79,6 +79,14 @@ LongPress:
     
     
     
+ ------------------------ Table view -----------------------
+ notifyDataSetChange = tableView.reloadData()
  
+ - Nếu đang trong 1 thread khác muốn reloadData() thì phải trở lại main thread
+ bằng cách dispatch_async(dispatch_get_main_queue(), {
+      #do something in main thread
+      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(1) * NSEC_PER_SEC)),
+      dispatch_get_main_queue))
+ })
  
     
